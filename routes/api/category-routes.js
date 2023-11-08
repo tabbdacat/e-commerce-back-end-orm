@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
   // find all categories
   try {
     const categoryData = await Category.findAll({
-    // add components!!!!
+    // include associated Products
     include: [
       Product,
     ]
@@ -18,11 +18,10 @@ router.get('/', async (req, res) => {
     // db error
     res.status(500).json(error);
   }
-  // be sure to include its associated Products
 });
 
 router.get('/:id', async (req, res) => {
-  // find one category by its `id` value
+  // find one category by its `id` value, include associated Products
   try {
     const categoryData = await Category.findByPk(req.params.id, {include: [
       Product,
@@ -33,7 +32,6 @@ router.get('/:id', async (req, res) => {
     // db error
     res.status(500).json(error);
   }
-  // be sure to include its associated Products
 });
 
 router.post('/', async (req, res) => {
