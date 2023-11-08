@@ -12,10 +12,10 @@ router.get('/', async (req, res) => {
       Product,
     ]
     });
-    //run 200 status code and provide UserData if the request is successful
+    //run 200 status code and provide categoryData if the request is successful
     res.status(200).json(categoryData);
   } catch (error) {
-    // db error
+    // db error if not successful
     res.status(500).json(error);
   }
 });
@@ -26,10 +26,10 @@ router.get('/:id', async (req, res) => {
     const categoryData = await Category.findByPk(req.params.id, {include: [
       Product,
     ]});
-    //run 200 status code and provide UserData if the request is successful
+    //run 200 status code and provide categoryData if the request is successful
     res.status(200).json(categoryData);
   } catch (error) {
-    // db error
+    // db error if not successful
     res.status(500).json(error);
   }
 });
@@ -38,8 +38,10 @@ router.post('/', async (req, res) => {
   // create a new category
   try {
     const categoryData = await Category.create(req.body);
+    //run 200 status code and provide categoryData if the request is successful
     res.status(200).json(categoryData);
   } catch (error) {
+    // db error if not successful
     res.status(500).json(error);
   }
 });
@@ -54,8 +56,10 @@ router.put('/:id', async (req, res) => {
       }
     }
   )
+  //run 200 status code and provide categoryData if the request is successful
   res.status(200).json(categoryData);
   } catch (error) {
+   // db error if not successful
     res.status(500).json(error);
   }
 });
@@ -69,8 +73,10 @@ router.delete('/:id', async (req, res) => {
         id: req.params.id,
       }
   })
+  //run 200 status code and provide categoryData if the request is successful
   res.status(200).json(categoryData);
 } catch (error) {
+ // db error if not successful
   res.status(500).json(error);
 }
 });
