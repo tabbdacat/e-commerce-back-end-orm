@@ -7,10 +7,10 @@ router.get('/', async (req, res) => {
   // find all categories
   try {
     const categoryData = await Category.findAll({
-    // include associated Products
-    include: [
-      Product,
-    ]
+      // include associated Products
+      include: [
+        Product,
+      ]
     });
     //run 200 status code and provide categoryData if the request is successful
     res.status(200).json(categoryData);
@@ -23,9 +23,11 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value, include associated Products
   try {
-    const categoryData = await Category.findByPk(req.params.id, {include: [
-      Product,
-    ]});
+    const categoryData = await Category.findByPk(req.params.id, {
+      include: [
+        Product,
+      ]
+    });
     //run 200 status code and provide categoryData if the request is successful
     res.status(200).json(categoryData);
   } catch (error) {
@@ -49,17 +51,17 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a category by its `id` value
   try {
-  const categoryData = await Category.update(req.body,
-    {
-      where: {
-        id: req.params.id,
+    const categoryData = await Category.update(req.body,
+      {
+        where: {
+          id: req.params.id,
+        }
       }
-    }
-  )
-  //run 200 status code and provide categoryData if the request is successful
-  res.status(200).json(categoryData);
+    )
+    //run 200 status code and provide categoryData if the request is successful
+    res.status(200).json(categoryData);
   } catch (error) {
-   // db error if not successful
+    // db error if not successful
     res.status(500).json(error);
   }
 });
@@ -67,18 +69,18 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   try {
-  const categoryData = await Category.destroy(
-    {
-      where: {
-        id: req.params.id,
-      }
-  })
-  //run 200 status code and provide categoryData if the request is successful
-  res.status(200).json(categoryData);
-} catch (error) {
- // db error if not successful
-  res.status(500).json(error);
-}
+    const categoryData = await Category.destroy(
+      {
+        where: {
+          id: req.params.id,
+        }
+      })
+    //run 200 status code and provide categoryData if the request is successful
+    res.status(200).json(categoryData);
+  } catch (error) {
+    // db error if not successful
+    res.status(500).json(error);
+  }
 });
 
 module.exports = router;
