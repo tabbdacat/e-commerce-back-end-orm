@@ -75,7 +75,7 @@ router.delete('/:id', async (req, res) => {
           id: req.params.id,
         }
       })
-    //run 200 status code and provide categoryData if the request is successful
+    //run 200 status code and provide updated categoryData if the request is successful
     res.status(200).json(categoryData);
   } catch (error) {
     // db error if not successful
